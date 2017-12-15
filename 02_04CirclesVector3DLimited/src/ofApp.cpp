@@ -2,28 +2,24 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    // 画面基本設定
-    ofSetFrameRate(60);//秒間60コマで描画
-    ofSetBackgroundColor(0);//背景色を黒に
-    ofEnableDepthTest();
-    
-    //count = 0;
-    
-    }
+    ofSetFrameRate(60);
+    ofSetBackgroundColor(0);
+}
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
-    ofVec3f loc = ofVec3f(ofGetWidth()/2, ofGetHeight()/2, 250);
+    ofVec3f loc = ofVec3f(ofGetWidth()/2, ofGetHeight()/2, 0);
+    ofVec3f vel = ofVec3f(ofRandom(-10, 10),
+                          ofRandom(-10, 10),
+                          ofRandom(-10, 10));
     location.push_back(loc);
-    
-    ofVec3f vel = ofVec3f(ofRandom(-10, 10), ofRandom(-10, 10), ofRandom(-10, 10));
     velocity.push_back(vel);
-    
-    ofColor col = ofColor(ofRandom(255), ofRandom(255), ofRandom(255));
-    color.push_back(col);
-    
-    //NUM回くりかえし
+
+    if(location.size() > max_num){
+        location.erase(location.begin());
+        velocity.erase(velocity.begin());
+    }
+
     for (int i = 0; i < location.size(); i++) {
         location[i] += velocity[i];
     }
@@ -31,52 +27,28 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
- 
-for (int i = 0; i < location.size(); i++){
-    
-        //sphere[i].setPosition(location3[i]);
-        //sphere[i].drawWireframe();
-    }
+    for (int i = 0; i < location.size(); i++) {
+        ofSetColor(31, 127, 255);
+        ofDrawCircle(location[i], 10);
+        ofDrawCircle(location[i], 10);
 
-    //NUM回くりかえし
-
-        //計算した位置に円を描画
-        ofSetColor(color[i]);//円の色
-        ofDrawCircle(location[i], 3);//半径10の円を描画
-        //ofDrawCircle(location[i], 10);//半径10の円を描画
-        
-        ofSetColor(color[i]);
-        
-        //画面の端でバウンドするように
-        if (location[i].x < 0 || location[i].x > ofGetWidth()) { //画面の左右ではみ出したら
-            velocity[i].x *= -1; //横向きの速度を反転(バウンド)
+        if (location[i].x < 0 || location[i].x > ofGetWidth()) {
+            velocity[i].x *= -1;
         }
-        if (location[i].y < 0 || location[i].y > ofGetHeight()) { //画面の左右ではみ出したら
-            velocity[i].y *= -1; //横向きの速度を反転(バウンド)
+        if (location[i].y < 0 || location[i].y > ofGetHeight()) {
+            velocity[i].y *= -1;
         }
-        
-        if (location[i].z < 0 || location[i].z > 500){
+        if (location[i].z < -ofGetHeight() || location[i].z > ofGetHeight()) {
             velocity[i].z *= -1;
         }
-        
-        sphere[i].setPosition(location3[i]);
-        sphere[i].drawWireframe();
-        
     }
-
-
-
-
-
+    
+    ofSetColor(255);
+    ofDrawBitmapStringHighlight(ofToString(location.size()), 20, 20);
+}
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-    if(key == 'k'){
-        location.clear();
-        velocity.clear();
-        color.clear();
-    }
     
 }
 

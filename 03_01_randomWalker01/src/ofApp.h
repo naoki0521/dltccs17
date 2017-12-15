@@ -15,13 +15,9 @@ public:
     void mouseDragged(int x, int y, int button);
     void mousePressed(int x, int y, int button);
     void mouseReleased(int x, int y, int button);
-    void mouseEntered(int x, int y);
-    void mouseExited(int x, int y);
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
-    
-    static const int num = 100;
-    ofVec2f location[num];
-    ofVec2f velocity[num];
+
+    ofVec2f pos;
 };

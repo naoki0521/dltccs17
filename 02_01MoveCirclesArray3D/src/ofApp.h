@@ -21,7 +21,7 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    static const int num = 100;
-    ofVec2f location[num];
-    ofVec2f velocity[num];
+    static const int NUM = 400;
+    ofVec3f location[NUM];
+    ofVec3f velocity[NUM];
 };

@@ -21,9 +21,23 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    static const int NUM = 100; //配列の最大数を定数として定義
+    //static const int NUM = 400; //ÈÖçÂàó„ÅÆÊúÄÂ§ßÊï∞„ÇíÂÆöÊï∞„Å®„Åó„Å¶ÂÆöÁæ©
     
-    //配列を定義
-    ofVec2f location[NUM]; //NUM個の位置ベクトル
-    ofVec2f velocity[NUM]; //NUM個の速度ベクトル
+    
+    //ÈÖçÂàó„ÇíÂÆöÁæ©
+    //ofVec2f location[NUM]; //NUMÂÄã„ÅÆ‰ΩçÁΩÆ„Éô„ÇØ„Éà„É´
+    //ofVec2f velocity[NUM]; //NUMÂÄã„ÅÆÈÄüÂ∫¶„Éô„ÇØ„Éà„É´
+    
+    //ÔºìÊ¨°ÂÖÉÈÖçÂàó„ÇíÂÆöÁæ©
+    vector<ofVec3f> location;
+    vector<ofVec3f> velocity;
+    vector<ofColor> color;
+    static const int MAX = 200;
+    
+    //int count;
+    
+    ofEasyCam cam;
+    
+    //define spheres
+    //ofSpherePrimitive sphere[NUM];
 };
